@@ -1,0 +1,28 @@
+---
+title: "ball_probability_exercise"
+author: "Jeremy Ornstein"
+date: "10/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+library(googlesheets4)
+```
+
+```{r}
+sheets_deauth()
+clean_data <- read_sheet("1cgP-e6THVfiW5TJ95QhX3jkNxKvc8Sicp9k_BkSRd2I") %>% 
+  filter(! is.na(red)) %>%
+  mutate(prob=(red/(white+red)))
+
+  ggplot(clean_data, aes(x=prob)) +
+  geom_histogram() +
+    labs(title="Proprotion of Red Beans in Sample Size", 
+         subtitle="Why the outlier?")
+  
+  
+  
+```
+
